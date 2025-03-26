@@ -2,13 +2,15 @@ import express from 'express';
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import router from './Routes/IndexRouting.js';
+import cors from 'cors';
 dotenv.config();
 const port=process.env.PORT||3000
 const db_user=process.env.DB_USER;
 const db_name=process.env.DB_NAME;
 const db_pass=process.env.DB_PASS;
 const app=express();
-
+// Middleware
+app.use(cors());
 app.use(express.json());
 app.use('/',router);
 const  dbUri=`mongodb+srv://${db_user}:${db_pass}@cluster0.uqqgv.mongodb.net/${db_name}`;
