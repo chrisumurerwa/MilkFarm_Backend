@@ -106,12 +106,12 @@ export const Validateopt=asyncWrapper(async(req,res,next)=>
 });
 export const SignIn=asyncWrapper(async(req,res,next)=>
 {
-    //validation 
-    const errors=validationResult(req)
-    if(!errors.isEmpty())
-    {
-        res.status(400).json(errors.array()[0].msg)
-    }
+    // //validation 
+    // const errors=validationResult(req)
+    // if(!errors.isEmpty())
+    // {
+    //     res.status(400).json(errors.array()[0].msg)
+    // }
     //find User
     const FoundUser=await UserModel.findOne({email:req.body.email})
     if(!FoundUser)
@@ -120,7 +120,8 @@ export const SignIn=asyncWrapper(async(req,res,next)=>
 
     };
     //Verify password
-    const isPasswordVerified= await bcryptjs.compareSync(req.body.password,FoundUser.password)
+    const isPasswordVerified= await bcryptjs.compare(req.body.password.trim(),FoundUser.password)
+    console.log(isPasswordVerified);
     if(!isPasswordVerified)
     {
         res.status(400).json('Invalid Password')

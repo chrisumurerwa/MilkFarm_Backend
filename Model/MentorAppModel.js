@@ -34,14 +34,6 @@ const mentorAppSchema = new Schema({
   typeOfDairyFarm: {
     type: String,
     required: true,
-    enum: [
-      'Small-Scale', 
-      'Large-Scale', 
-      'Organic', 
-      'Conventional', 
-      'Family-Owned', 
-      'Corporate'
-    ]
   },
   mentorshipGoals: {
     type: String,
