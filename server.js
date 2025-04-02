@@ -24,7 +24,7 @@ mongoose.connect(dbUri, {
 .then(() => {
   console.log("Connected to MongoDB");
   app.listen(port, () => {
-    console.log(`Node API is running on port http://localhost:${port}`);
+    console.log(`Node API is running on port http://localhost:5001${port}`);
   });
 })
 .catch((error) => {
