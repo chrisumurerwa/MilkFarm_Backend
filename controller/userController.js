@@ -1,5 +1,5 @@
 import UserModel from "../Model/userModel.js";
-import asyncWrapper from "../middleware/async.js";
+import asyncWrapper from "../Middleware/async.js";
 import { otpGenerator } from "../utils/otp.js";
 import {validationResult} from 'express-validator';
 import {sendEmail} from '../utils/sendEmail.js';
@@ -34,7 +34,7 @@ export const SignUp=asyncWrapper(async(req,res,next)=>
     };
 
     //harshing the user Password
-    const hashedPassword = await bcryptjs.hashSync(req.body.password,10);
+    const hashedPassword = bcryptjs.hashSync(req.body.password, 10);
     //Generating otp generator
     const otp=otpGenerator();
     const otpExpirationDate= new Date().getTime()+(60*1000*5);
